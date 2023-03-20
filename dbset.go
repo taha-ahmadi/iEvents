@@ -1,8 +1,8 @@
 package main
 
 import (
-	persistence "github.com/taha-ahmadi/iEvents/persistance"
-	"github.com/taha-ahmadi/iEvents/persistance/mongodb"
+	"github.com/taha-ahmadi/iEvents/persistence"
+	"github.com/taha-ahmadi/iEvents/persistence/mongodb"
 )
 
 type DBTYPE string
