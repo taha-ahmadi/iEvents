@@ -9,6 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/taha-ahmadi/iEvents/persistence"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type eventServiceHandler struct {
@@ -83,6 +84,9 @@ func (eh *eventServiceHandler) NewEventHandler(w http.ResponseWriter, r *http.Re
 		fmt.Fprintf(w, `{"error": "error occured while decoding event data %s"}`, err)
 		return
 	}
+
+	event.ID = primitive.NewObjectID()
+
 	id, err := eh.dbhandler.AddEvent(event)
 	if nil != err {
 		w.WriteHeader(500)

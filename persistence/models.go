@@ -3,6 +3,7 @@ package persistence
 import (
 	"fmt"
 
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -25,7 +26,7 @@ type Booking struct {
 }
 
 type Event struct {
-	ID        bson.ObjectId `bson:"_id"`
+	ID        primitive.ObjectID `bson:"_id"`
 	Name      string
 	Duration  int
 	StartDate int64
@@ -34,7 +35,7 @@ type Event struct {
 }
 
 type Location struct {
-	ID        bson.ObjectId `bson:"_id"`
+	ID        primitive.ObjectID `bson:"_id"`
 	Name      string
 	Address   string
 	Country   string

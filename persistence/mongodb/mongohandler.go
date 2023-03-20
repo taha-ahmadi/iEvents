@@ -35,12 +35,11 @@ func NewMongoDBLayer(connection string) (persistence.DatabaseHandler, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to ping database")
 	}
-
 	return &MongoDBLayer{client: client}, nil
 }
 
 func (mgoLayer *MongoDBLayer) AddEvent(e persistence.Event) ([]byte, error) {
-	collection := mgoLayer.client.Database("events-db").Collection("events")
+	collection := mgoLayer.client.Database(DB).Collection(EVENTS)
 
 	result, err := collection.InsertOne(context.Background(), e)
 	if err != nil {
@@ -51,7 +50,7 @@ func (mgoLayer *MongoDBLayer) AddEvent(e persistence.Event) ([]byte, error) {
 }
 
 func (mgoLayer *MongoDBLayer) FindEvent(id []byte) (persistence.Event, error) {
-	collection := mgoLayer.client.Database("events-db").Collection("events")
+	collection := mgoLayer.client.Database(DB).Collection(EVENTS)
 
 	objectID, err := primitive.ObjectIDFromHex(string(id))
 	if err != nil {
@@ -73,7 +72,7 @@ func (mgoLayer *MongoDBLayer) FindEvent(id []byte) (persistence.Event, error) {
 }
 
 func (mgoLayer *MongoDBLayer) FindEventByName(name string) (persistence.Event, error) {
-	collection := mgoLayer.client.Database("events-db").Collection("events")
+	collection := mgoLayer.client.Database(DB).Collection(EVENTS)
 
 	filter := bson.M{"name": name}
 
@@ -90,7 +89,7 @@ func (mgoLayer *MongoDBLayer) FindEventByName(name string) (persistence.Event, e
 }
 
 func (mgoLayer *MongoDBLayer) FindAllAvailableEvents() ([]persistence.Event, error) {
-	collection := mgoLayer.client.Database("events-db").Collection("events")
+	collection := mgoLayer.client.Database(DB).Collection(EVENTS)
 
 	cursor, err := collection.Find(context.Background(), bson.M{})
 	if err != nil {
