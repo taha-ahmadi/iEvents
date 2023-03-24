@@ -12,7 +12,7 @@ type DynamicEventMapper struct {
 	typeMap map[string]reflect.Type
 }
 
-func NewDynamicEventMapper() EventMapper {
+func NewDynamicEventMapper() *DynamicEventMapper {
 	return &DynamicEventMapper{
 		typeMap: make(map[string]reflect.Type),
 	}

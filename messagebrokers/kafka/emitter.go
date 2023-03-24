@@ -27,7 +27,7 @@ func NewKafkaEventEmitterFromEnvironment() (messagebrokers.EventEmitter, error) 
 		brokers = strings.Split(brokerList, ",")
 	}
 
-	client := <-kafka.RetryConnect(brokers, 5*time.Second)
+	client := <-RetryConnect(brokers, 5*time.Second)
 	return NewKafkaEventEmitter(client)
 }
 

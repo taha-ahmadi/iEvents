@@ -40,7 +40,7 @@ func NewAMQPEventEmitterFromEnvironment() (messagebrokers.EventEmitter, error) {
 		exchange = "example"
 	}
 
-	conn := <-amqphelper.RetryConnect(url, 5*time.Second)
+	conn := <-RetryConnect(url, 5*time.Second)
 	return NewAMQPEventEmitter(conn, exchange)
 }
 

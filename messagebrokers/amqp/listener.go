@@ -43,7 +43,7 @@ func NewAMQPEventListenerFromEnvironment() (messagebrokers.EventListener, error)
 		queue = "example"
 	}
 
-	conn := <-amqphelper.RetryConnect(url, 5*time.Second)
+	conn := <-RetryConnect(url, 5*time.Second)
 	return NewAMQPEventListener(conn, exchange, queue)
 }
 

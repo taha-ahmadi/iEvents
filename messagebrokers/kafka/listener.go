@@ -40,7 +40,7 @@ func NewKafkaEventListenerFromEnvironment() (messagebrokers.EventListener, error
 		}
 	}
 
-	client := <-kafka.RetryConnect(brokers, 5*time.Second)
+	client := <-RetryConnect(brokers, 5*time.Second)
 
 	return NewKafkaEventListener(client, partitions)
 }

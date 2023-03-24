@@ -7,6 +7,7 @@ import (
 
 	"github.com/taha-ahmadi/iEvents/messagebrokers"
 	"github.com/taha-ahmadi/iEvents/messagebrokers/amqp"
+	"github.com/taha-ahmadi/iEvents/messagebrokers/kafka"
 )
 
 func NewEventListenerFromEnvironment() (messagebrokers.EventListener, error) {
